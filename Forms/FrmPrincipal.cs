@@ -1,5 +1,6 @@
 using System.Diagnostics;
 using System.Drawing.Configuration;
+using System.Text;
 using System.Windows.Forms;
 using CalcSubnet.Classes;
 using CalcSubnet.Forms;
@@ -87,14 +88,22 @@ namespace CalcSubnet
         #region Propriedades dos TextBoxes que exibem o CIDR.
         public string TxtCIDREnderecoIPDecimal
         {
-            get => TxtCIDREndIPDec.Text;
-            set => TxtCIDREndIPDec.Text = value;
+            get => TxtCIDREndIP.Text;
+            set => TxtCIDREndIP.Text = value;
         }
 
         public string TxtCIDRMascaraDecimal
         {
-            get => TxtCIDRMascDec.Text;
-            set => TxtCIDRMascDec.Text = value;
+            get => TxtCIDRMasc.Text;
+            set => TxtCIDRMasc.Text = value;
+        }
+        #endregion
+
+        #region Propriedades da caixa de mensagens
+        public string TxtExibirMensagens
+        {
+            get => RtxtMensagens.Text;
+            set => RtxtMensagens.Text = value;
         }
         #endregion
 
@@ -107,6 +116,7 @@ namespace CalcSubnet
         {
             SelTipoConversaoIP();
             SelTipoConversaoMascara();
+            HabilitarBotaoCalcular();
         }
 
         #region Eventos do Menu
@@ -149,6 +159,81 @@ namespace CalcSubnet
         }
         #endregion
 
+        #region Eventos dos TextBoxes
+        private void TxtEnderecoIPDec_TextChanged(object sender, EventArgs e)
+        {
+            HabilitarBotaoCalcular();
+            if (TxtEnderecoIPDec.Text == "0.0.0.0" || string.IsNullOrWhiteSpace(TxtEnderecoIPDec.Text) || string.IsNullOrEmpty(TxtEnderecoIPDec.Text))
+            {
+                TxtCIDREndIP.ReadOnly = true;
+            }
+            else
+            {
+                TxtCIDREndIP.ReadOnly = false;
+            }
+        }
+
+        private void TxtEnderecoIPBin_TextChanged(object sender, EventArgs e)
+        {
+            HabilitarBotaoCalcular();
+        }
+
+        private void TxtCIDREndIP_TextChanged(object sender, EventArgs e)
+        {
+            RbConvMascBinDec.Checked = true;
+            TxtCIDRMasc.Text = TxtCIDREndIP.Text;
+            int qtd1s = int.Parse(TxtCIDREndIP.Text);
+            TxtMascaraBin.Text = InserirDigitosBin(qtd1s).ToString();
+        }
+        #endregion
+
+        static string InserirDigitosBin(int qtd1s)
+        {
+            const int qtdDeBits = 32;
+            StringBuilder gerarMascara = new StringBuilder(qtdDeBits);
+            
+            for (int i = 0; i < qtdDeBits; i++)
+            {
+                if (i < qtd1s)
+                {
+                    gerarMascara.Append('1');
+                }
+                else
+                {
+                    gerarMascara.Append('0');
+                }
+
+                if ((i + 1) % 8 == 0 && i < qtdDeBits - 1)
+                {
+                    gerarMascara.Append('.');
+                }
+            }
+
+            return gerarMascara.ToString();
+        }
+
+        private void HabilitarBotaoCalcular()
+        {
+            if ((TxtEnderecoIPDec.Text == "0.0.0.0") || (string.IsNullOrWhiteSpace(TxtEnderecoIPDec.Text)))
+            {
+                BtnCalcular.Enabled = false;
+            }
+            else
+            {
+                BtnCalcular.Enabled = true;
+            }
+
+            /*
+            if ((TxtEnderecoIPBin.Text == "00000000.00000000.00000000.00000000") || (string.IsNullOrWhiteSpace(TxtEnderecoIPBin.Text)) || (string.IsNullOrEmpty(TxtEnderecoIPBin.Text)))
+            {
+                BtnCalcular.Enabled = false;
+            }
+            else
+            {
+                BtnCalcular.Enabled = true;
+            }*/
+        }
+
         #region Eventos dos botões
         private void BtnCalcular_Click(object sender, EventArgs e)
         {
@@ -156,18 +241,43 @@ namespace CalcSubnet
 
             if (TipoDeConversaoIP == false)
             {
-                enderecoIPV4.ConverterIPDecimalParaBinario();
+                enderecoIPV4.ConverterIPDecimalParaBinario(1);
             }
             else
             {
-                enderecoIPV4.ConverterIPBinarioParaDecimal();
+                enderecoIPV4.ConverterIPBinarioParaDecimal(1);
             }
 
             Mascara mascara = new Mascara(this);
 
             if (TipoDeConversaoMascara == false)
             {
-                mascara.ConverterMascaraDecimalParaBinario();
+                mascara.ConverterMascaraDecimalParaBinario(1);
+            }
+            else
+            {
+                mascara.ConverterMascaraBinarioParaDecimal();
+            }
+        }
+
+        private void BtnConverter_Click(object sender, EventArgs e)
+        {
+            EnderecoIP enderecoIPV4 = new EnderecoIP(this);
+
+            if (TipoDeConversaoIP == false)
+            {
+                enderecoIPV4.ConverterIPDecimalParaBinario(2);
+            }
+            else
+            {
+                enderecoIPV4.ConverterIPBinarioParaDecimal(2);
+            }
+
+            Mascara mascara = new Mascara(this);
+
+            if (TipoDeConversaoMascara == false)
+            {
+                mascara.ConverterMascaraDecimalParaBinario(2);
             }
             else
             {
@@ -243,7 +353,7 @@ namespace CalcSubnet
         {
             SelTipoConversaoMascara();
         }
-        #endregion
 
+        #endregion
     }
 }

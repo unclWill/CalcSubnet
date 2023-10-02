@@ -29,7 +29,7 @@ namespace CalcSubnet.Classes
             return base.ConverterBinarioParaDecimal(octeto);
         }
 
-        internal void ConverterMascaraDecimalParaBinario()
+        internal void ConverterMascaraDecimalParaBinario(sbyte tipoAcao = 1)
         {
             try
             {
@@ -39,35 +39,72 @@ namespace CalcSubnet.Classes
                 List<string> octeto1 = new List<string>(), octeto2 = new List<string>(), octeto3 = new List<string>(), octeto4 = new List<string>();
                 string pOcteto = string.Empty, sOcteto = string.Empty, tOcteto = string.Empty, qOcteto = string.Empty;
 
-                int contOcteto = 0;
-                foreach (int octeto in enderecoIPv4)
+                if (tipoAcao == 1)
                 {
-                    contOcteto++;
-
-                    switch (contOcteto)
+                    int contOcteto = 0;
+                    foreach (int octeto in enderecoIPv4)
                     {
-                        case 1:
-                            octeto1 = ConverterDecimalParaBinario(octeto);
-                            pOcteto = string.Join("", octeto1);
-                            break;
-                        case 2:
-                            octeto2 = ConverterDecimalParaBinario(octeto); ;
-                            sOcteto = string.Join("", octeto2);
-                            break;
-                        case 3:
-                            octeto3 = ConverterDecimalParaBinario(octeto);
-                            tOcteto = string.Join("", octeto3);
-                            break;
-                        case 4:
-                            octeto4 = ConverterDecimalParaBinario(octeto);
-                            qOcteto = string.Join("", octeto4);
-                            break;
+                        contOcteto++;
+
+                        switch (contOcteto)
+                        {
+                            case 1:
+                                octeto1 = ConverterDecimalParaBinario(octeto);
+                                pOcteto = string.Join("", octeto1);
+                                break;
+                            case 2:
+                                octeto2 = ConverterDecimalParaBinario(octeto); ;
+                                sOcteto = string.Join("", octeto2);
+                                break;
+                            case 3:
+                                octeto3 = ConverterDecimalParaBinario(octeto);
+                                tOcteto = string.Join("", octeto3);
+                                break;
+                            case 4:
+                                octeto4 = ConverterDecimalParaBinario(octeto);
+                                qOcteto = string.Join("", octeto4);
+                                break;
+                        }
                     }
+
+                    DeterminarQtdDeHostsESubredes(pOcteto, sOcteto, tOcteto, qOcteto);
+                    formPrincipal.TxtMascaraBinario = pOcteto + "." + sOcteto + "." + tOcteto + "." + qOcteto;
+
+                    //formPrincipal.TxtCIDRMascaraDecimal = formPrincipal.TxtCIDREnderecoIPDecimal;
+                }
+                else
+                {
+                    int contOcteto = 0;
+                    foreach (int octeto in enderecoIPv4)
+                    {
+                        contOcteto++;
+
+                        switch (contOcteto)
+                        {
+                            case 1:
+                                octeto1 = ConverterDecimalParaBinario(octeto);
+                                pOcteto = string.Join("", octeto1);
+                                break;
+                            case 2:
+                                octeto2 = ConverterDecimalParaBinario(octeto); ;
+                                sOcteto = string.Join("", octeto2);
+                                break;
+                            case 3:
+                                octeto3 = ConverterDecimalParaBinario(octeto);
+                                tOcteto = string.Join("", octeto3);
+                                break;
+                            case 4:
+                                octeto4 = ConverterDecimalParaBinario(octeto);
+                                qOcteto = string.Join("", octeto4);
+                                break;
+                        }
+                    }
+
+
+                    formPrincipal.TxtCIDRMascaraDecimal = DeterminarCIDR(pOcteto, sOcteto, tOcteto, qOcteto).ToString();
+                    formPrincipal.TxtMascaraBinario = pOcteto + "." + sOcteto + "." + tOcteto + "." + qOcteto;
                 }
 
-                DeterminarQtdDeHostsESubredes(pOcteto, sOcteto, tOcteto, qOcteto);
-
-                formPrincipal.TxtMascaraBinario = pOcteto + "." + sOcteto + "." + tOcteto + "." + qOcteto;
             }
             catch (Exception)
             {
@@ -75,38 +112,72 @@ namespace CalcSubnet.Classes
             }
         }
 
-        internal void ConverterMascaraBinarioParaDecimal()
+        internal void ConverterMascaraBinarioParaDecimal(sbyte tipoAcao = 1)
         {
             try
             {
                 string[] enderecoDigitado = formPrincipal.TxtMascaraBinario.Trim().Split('.');
                 int octeto1 = 0, octeto2 = 0, octeto3 = 0, octeto4 = 0;
 
-                int contOcteto = 0;
-                foreach (string octeto in enderecoDigitado)
+                if (tipoAcao == 1)
                 {
-                    contOcteto++;
-
-                    switch (contOcteto)
+                    int contOcteto = 0;
+                    foreach (string octeto in enderecoDigitado)
                     {
-                        case 1:
-                            octeto1 = ConverterBinarioParaDecimal(octeto);
-                            break;
-                        case 2:
-                            octeto2 = ConverterBinarioParaDecimal(octeto);
-                            break;
-                        case 3:
-                            octeto3 = ConverterBinarioParaDecimal(octeto);
-                            break;
-                        case 4:
-                            octeto4 = ConverterBinarioParaDecimal(octeto);
-                            break;
+                        contOcteto++;
+
+                        switch (contOcteto)
+                        {
+                            case 1:
+                                octeto1 = ConverterBinarioParaDecimal(octeto);
+                                break;
+                            case 2:
+                                octeto2 = ConverterBinarioParaDecimal(octeto);
+                                break;
+                            case 3:
+                                octeto3 = ConverterBinarioParaDecimal(octeto);
+                                break;
+                            case 4:
+                                octeto4 = ConverterBinarioParaDecimal(octeto);
+                                break;
+                        }
                     }
+
+                    DeterminarCIDR(enderecoDigitado);
+
+                    //DeterminarQtdDeHostsESubredes(octeto1, octeto2, octeto3, octeto4);
+
+                    formPrincipal.TxtMascaraDecimal = octeto1.ToString() + "." + octeto2.ToString() + "." + octeto3.ToString() + "." + octeto4.ToString();
+                }
+                else
+                {
+                    int contOcteto = 0;
+                    foreach (string octeto in enderecoDigitado)
+                    {
+                        contOcteto++;
+
+                        switch (contOcteto)
+                        {
+                            case 1:
+                                octeto1 = ConverterBinarioParaDecimal(octeto);
+                                break;
+                            case 2:
+                                octeto2 = ConverterBinarioParaDecimal(octeto);
+                                break;
+                            case 3:
+                                octeto3 = ConverterBinarioParaDecimal(octeto);
+                                break;
+                            case 4:
+                                octeto4 = ConverterBinarioParaDecimal(octeto);
+                                break;
+                        }
+                    }
+
+                    DeterminarCIDR(enderecoDigitado);
+
+                    formPrincipal.TxtMascaraDecimal = octeto1.ToString() + "." + octeto2.ToString() + "." + octeto3.ToString() + "." + octeto4.ToString();
                 }
 
-                DeterminarCIDR(enderecoDigitado);
-
-                formPrincipal.TxtMascaraDecimal = octeto1.ToString() + "." + octeto2.ToString() + "." + octeto3.ToString() + "." + octeto4.ToString();
             }
             catch (Exception)
             {
@@ -204,9 +275,9 @@ namespace CalcSubnet.Classes
 
         internal void ResetarCamposMascara()
         {
-            const string valorPadraoDecimal = "255.255.255.0";
-            const string valorPadraoBinario = "11111111.11111111.11111111.00000000";
-            const string valorPadraoCIDR = "24";
+            const string valorPadraoDecimal = "0.0.0.0";
+            const string valorPadraoBinario = "00000000.00000000.00000000.00000000";
+            const string valorPadraoCIDR = "0";
             //
             const string valorPadraoClasseIP = "INDF";
             const string valorPadraoResultados = "0";
@@ -219,6 +290,8 @@ namespace CalcSubnet.Classes
             //formPrincipal.TxtClasseDoIPCor.BackColor = Color.White;
             formPrincipal.TxtQtdDeSubredes = valorPadraoResultados;
             formPrincipal.TxtQtdDeHosts = valorPadraoResultados;
+            formPrincipal.TxtQtdHostsPossiveisPorSubrede = valorPadraoResultados;
+            formPrincipal.TxtExibirMensagens = "Todos os campos foram resetados para os valores padrão.";
         }
     }
 }
