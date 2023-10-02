@@ -51,9 +51,6 @@
             BtnGerarLista = new Button();
             BtnResetarCampos = new Button();
             BtnCalcular = new Button();
-            groupBox2 = new GroupBox();
-            RbConvIPBinDec = new RadioButton();
-            RbConvIPDecBin = new RadioButton();
             groupBox5 = new GroupBox();
             label7 = new Label();
             panel2 = new Panel();
@@ -67,6 +64,9 @@
             TxtCIDRMascDec = new TextBox();
             label16 = new Label();
             label17 = new Label();
+            groupBox3 = new GroupBox();
+            RbConvMascDecBin = new RadioButton();
+            RbConvMascBinDec = new RadioButton();
             GpbIPv4 = new GroupBox();
             GpbIPv4EndBin = new GroupBox();
             TxtEnderecoIPBin = new TextBox();
@@ -76,9 +76,9 @@
             TxtCIDREndIPDec = new TextBox();
             label3 = new Label();
             label4 = new Label();
-            groupBox3 = new GroupBox();
-            RbConvMascDecBin = new RadioButton();
-            RbConvMascBinDec = new RadioButton();
+            groupBox2 = new GroupBox();
+            RbConvIPBinDec = new RadioButton();
+            RbConvIPDecBin = new RadioButton();
             MnuPrincipal = new MenuStrip();
             MnuArquivo = new ToolStripMenuItem();
             newToolStripMenuItem = new ToolStripMenuItem();
@@ -86,6 +86,8 @@
             MnuSair = new ToolStripMenuItem();
             MnuFerramentas = new ToolStripMenuItem();
             MnuCalculadora = new ToolStripMenuItem();
+            toolStripSeparator2 = new ToolStripSeparator();
+            MnuBlocoDeNotas = new ToolStripMenuItem();
             MnuSobre = new ToolStripMenuItem();
             MnuSobreEsteSoftware = new ToolStripMenuItem();
             groupBox1.SuspendLayout();
@@ -97,16 +99,16 @@
             panel1.SuspendLayout();
             GpbEndRedeBroadcast.SuspendLayout();
             groupBox6.SuspendLayout();
-            groupBox2.SuspendLayout();
             groupBox5.SuspendLayout();
             panel2.SuspendLayout();
             GpbMascara.SuspendLayout();
             groupBox10.SuspendLayout();
             groupBox11.SuspendLayout();
+            groupBox3.SuspendLayout();
             GpbIPv4.SuspendLayout();
             GpbIPv4EndBin.SuspendLayout();
             GpbIPv4EndDec.SuspendLayout();
-            groupBox3.SuspendLayout();
+            groupBox2.SuspendLayout();
             MnuPrincipal.SuspendLayout();
             SuspendLayout();
             // 
@@ -118,11 +120,9 @@
             groupBox1.Controls.Add(groupBox4);
             groupBox1.Controls.Add(GpbEndRedeBroadcast);
             groupBox1.Controls.Add(groupBox6);
-            groupBox1.Controls.Add(groupBox2);
             groupBox1.Controls.Add(groupBox5);
             groupBox1.Controls.Add(GpbMascara);
             groupBox1.Controls.Add(GpbIPv4);
-            groupBox1.Controls.Add(groupBox3);
             groupBox1.Location = new Point(12, 27);
             groupBox1.Name = "groupBox1";
             groupBox1.Size = new Size(805, 617);
@@ -133,7 +133,7 @@
             // 
             groupBox8.Controls.Add(label9);
             groupBox8.Controls.Add(panel4);
-            groupBox8.Location = new Point(26, 428);
+            groupBox8.Location = new Point(30, 420);
             groupBox8.Name = "groupBox8";
             groupBox8.Size = new Size(86, 91);
             groupBox8.TabIndex = 16;
@@ -154,7 +154,7 @@
             panel4.Controls.Add(TxtClasseIP);
             panel4.Location = new Point(17, 22);
             panel4.Name = "panel4";
-            panel4.Size = new Size(51, 50);
+            panel4.Size = new Size(51, 47);
             panel4.TabIndex = 2;
             // 
             // TxtClasseIP
@@ -167,14 +167,14 @@
             TxtClasseIP.Name = "TxtClasseIP";
             TxtClasseIP.Size = new Size(45, 26);
             TxtClasseIP.TabIndex = 0;
-            TxtClasseIP.Text = "C";
+            TxtClasseIP.Text = "INDF";
             TxtClasseIP.TextAlign = HorizontalAlignment.Center;
             // 
             // groupBox7
             // 
             groupBox7.Controls.Add(label6);
             groupBox7.Controls.Add(panel3);
-            groupBox7.Location = new Point(563, 428);
+            groupBox7.Location = new Point(567, 420);
             groupBox7.Name = "groupBox7";
             groupBox7.Size = new Size(207, 91);
             groupBox7.TabIndex = 15;
@@ -196,7 +196,7 @@
             panel3.Controls.Add(TxtQtdHostsPossiveis);
             panel3.Location = new Point(25, 22);
             panel3.Name = "panel3";
-            panel3.Size = new Size(164, 50);
+            panel3.Size = new Size(164, 47);
             panel3.TabIndex = 2;
             // 
             // TxtQtdHostsPossiveis
@@ -204,19 +204,19 @@
             TxtQtdHostsPossiveis.BackColor = Color.LightSkyBlue;
             TxtQtdHostsPossiveis.BorderStyle = BorderStyle.None;
             TxtQtdHostsPossiveis.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-            TxtQtdHostsPossiveis.Location = new Point(0, 12);
+            TxtQtdHostsPossiveis.Location = new Point(0, 11);
             TxtQtdHostsPossiveis.MaxLength = 3;
             TxtQtdHostsPossiveis.Name = "TxtQtdHostsPossiveis";
             TxtQtdHostsPossiveis.Size = new Size(164, 26);
             TxtQtdHostsPossiveis.TabIndex = 0;
-            TxtQtdHostsPossiveis.Text = "16";
+            TxtQtdHostsPossiveis.Text = "0";
             TxtQtdHostsPossiveis.TextAlign = HorizontalAlignment.Center;
             // 
             // groupBox4
             // 
             groupBox4.Controls.Add(label8);
             groupBox4.Controls.Add(panel1);
-            groupBox4.Location = new Point(132, 428);
+            groupBox4.Location = new Point(136, 420);
             groupBox4.Name = "groupBox4";
             groupBox4.Size = new Size(207, 91);
             groupBox4.TabIndex = 4;
@@ -238,7 +238,7 @@
             panel1.Controls.Add(TxtQtdSubredes);
             panel1.Location = new Point(25, 22);
             panel1.Name = "panel1";
-            panel1.Size = new Size(164, 50);
+            panel1.Size = new Size(164, 47);
             panel1.TabIndex = 2;
             // 
             // TxtQtdSubredes
@@ -246,12 +246,12 @@
             TxtQtdSubredes.BackColor = SystemColors.InactiveCaption;
             TxtQtdSubredes.BorderStyle = BorderStyle.None;
             TxtQtdSubredes.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-            TxtQtdSubredes.Location = new Point(0, 12);
+            TxtQtdSubredes.Location = new Point(0, 11);
             TxtQtdSubredes.MaxLength = 3;
             TxtQtdSubredes.Name = "TxtQtdSubredes";
             TxtQtdSubredes.Size = new Size(164, 26);
             TxtQtdSubredes.TabIndex = 0;
-            TxtQtdSubredes.Text = "16";
+            TxtQtdSubredes.Text = "0";
             TxtQtdSubredes.TextAlign = HorizontalAlignment.Center;
             // 
             // GpbEndRedeBroadcast
@@ -260,9 +260,9 @@
             GpbEndRedeBroadcast.Controls.Add(label5);
             GpbEndRedeBroadcast.Controls.Add(TxtEnderecoIPDeRede);
             GpbEndRedeBroadcast.Controls.Add(label1);
-            GpbEndRedeBroadcast.Location = new Point(247, 528);
+            GpbEndRedeBroadcast.Location = new Point(26, 527);
             GpbEndRedeBroadcast.Name = "GpbEndRedeBroadcast";
-            GpbEndRedeBroadcast.Size = new Size(310, 83);
+            GpbEndRedeBroadcast.Size = new Size(748, 83);
             GpbEndRedeBroadcast.TabIndex = 6;
             GpbEndRedeBroadcast.TabStop = false;
             GpbEndRedeBroadcast.Text = "Endereço inicial e endereço final";
@@ -270,18 +270,18 @@
             // TxtEnderecoIPDeBroadcast
             // 
             TxtEnderecoIPDeBroadcast.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            TxtEnderecoIPDeBroadcast.Location = new Point(161, 42);
+            TxtEnderecoIPDeBroadcast.Location = new Point(387, 42);
             TxtEnderecoIPDeBroadcast.MaxLength = 15;
             TxtEnderecoIPDeBroadcast.Name = "TxtEnderecoIPDeBroadcast";
             TxtEnderecoIPDeBroadcast.Size = new Size(143, 25);
             TxtEnderecoIPDeBroadcast.TabIndex = 9;
-            TxtEnderecoIPDeBroadcast.Text = "192.168.0.255";
+            TxtEnderecoIPDeBroadcast.Text = "255.255.255.255";
             TxtEnderecoIPDeBroadcast.TextAlign = HorizontalAlignment.Center;
             // 
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(169, 24);
+            label5.Location = new Point(395, 24);
             label5.Name = "label5";
             label5.Size = new Size(127, 15);
             label5.TabIndex = 8;
@@ -290,18 +290,18 @@
             // TxtEnderecoIPDeRede
             // 
             TxtEnderecoIPDeRede.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            TxtEnderecoIPDeRede.Location = new Point(6, 42);
+            TxtEnderecoIPDeRede.Location = new Point(232, 42);
             TxtEnderecoIPDeRede.MaxLength = 15;
             TxtEnderecoIPDeRede.Name = "TxtEnderecoIPDeRede";
             TxtEnderecoIPDeRede.Size = new Size(143, 25);
             TxtEnderecoIPDeRede.TabIndex = 7;
-            TxtEnderecoIPDeRede.Text = "192.168.0.0";
+            TxtEnderecoIPDeRede.Text = "0.0.0.0";
             TxtEnderecoIPDeRede.TextAlign = HorizontalAlignment.Center;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(28, 24);
+            label1.Location = new Point(254, 24);
             label1.Name = "label1";
             label1.Size = new Size(98, 15);
             label1.TabIndex = 6;
@@ -325,11 +325,14 @@
             BtnGerarLista.FlatAppearance.BorderColor = Color.Orange;
             BtnGerarLista.FlatAppearance.BorderSize = 2;
             BtnGerarLista.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            BtnGerarLista.Location = new Point(473, 24);
+            BtnGerarLista.Image = (Image)resources.GetObject("BtnGerarLista.Image");
+            BtnGerarLista.ImageAlign = ContentAlignment.MiddleLeft;
+            BtnGerarLista.Location = new Point(468, 22);
             BtnGerarLista.Name = "BtnGerarLista";
-            BtnGerarLista.Size = new Size(197, 35);
+            BtnGerarLista.Size = new Size(219, 35);
             BtnGerarLista.TabIndex = 8;
             BtnGerarLista.Text = "Gerar lista com as faixas de IPs";
+            BtnGerarLista.TextAlign = ContentAlignment.MiddleRight;
             BtnGerarLista.UseVisualStyleBackColor = true;
             BtnGerarLista.Click += BtnGerarLista_Click;
             // 
@@ -338,11 +341,14 @@
             BtnResetarCampos.FlatAppearance.BorderColor = Color.RoyalBlue;
             BtnResetarCampos.FlatAppearance.BorderSize = 2;
             BtnResetarCampos.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            BtnResetarCampos.Location = new Point(344, 24);
+            BtnResetarCampos.Image = (Image)resources.GetObject("BtnResetarCampos.Image");
+            BtnResetarCampos.ImageAlign = ContentAlignment.MiddleLeft;
+            BtnResetarCampos.Location = new Point(326, 22);
             BtnResetarCampos.Name = "BtnResetarCampos";
-            BtnResetarCampos.Size = new Size(123, 35);
+            BtnResetarCampos.Size = new Size(136, 35);
             BtnResetarCampos.TabIndex = 9;
             BtnResetarCampos.Text = "Resetar campos";
+            BtnResetarCampos.TextAlign = ContentAlignment.MiddleRight;
             BtnResetarCampos.UseVisualStyleBackColor = true;
             BtnResetarCampos.Click += BtnResetarCampos_Click;
             // 
@@ -351,54 +357,21 @@
             BtnCalcular.FlatAppearance.BorderColor = Color.YellowGreen;
             BtnCalcular.FlatAppearance.BorderSize = 2;
             BtnCalcular.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            BtnCalcular.Location = new Point(100, 24);
+            BtnCalcular.Image = (Image)resources.GetObject("BtnCalcular.Image");
+            BtnCalcular.ImageAlign = ContentAlignment.MiddleLeft;
+            BtnCalcular.Location = new Point(101, 20);
             BtnCalcular.Name = "BtnCalcular";
-            BtnCalcular.Size = new Size(238, 35);
+            BtnCalcular.Size = new Size(219, 35);
             BtnCalcular.TabIndex = 8;
             BtnCalcular.Text = "Converter";
             BtnCalcular.UseVisualStyleBackColor = true;
             BtnCalcular.Click += BtnCalcular_Click;
             // 
-            // groupBox2
-            // 
-            groupBox2.Controls.Add(RbConvIPBinDec);
-            groupBox2.Controls.Add(RbConvIPDecBin);
-            groupBox2.Location = new Point(6, 17);
-            groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(391, 70);
-            groupBox2.TabIndex = 11;
-            groupBox2.TabStop = false;
-            groupBox2.Text = "IP | Tipo de conversão";
-            // 
-            // RbConvIPBinDec
-            // 
-            RbConvIPBinDec.AutoSize = true;
-            RbConvIPBinDec.Location = new Point(93, 44);
-            RbConvIPBinDec.Name = "RbConvIPBinDec";
-            RbConvIPBinDec.Size = new Size(205, 19);
-            RbConvIPBinDec.TabIndex = 10;
-            RbConvIPBinDec.Text = "Converter de Binário para Decimal";
-            RbConvIPBinDec.UseVisualStyleBackColor = true;
-            RbConvIPBinDec.CheckedChanged += RbConvIPBinDec_CheckedChanged;
-            // 
-            // RbConvIPDecBin
-            // 
-            RbConvIPDecBin.AutoSize = true;
-            RbConvIPDecBin.Checked = true;
-            RbConvIPDecBin.Location = new Point(93, 21);
-            RbConvIPDecBin.Name = "RbConvIPDecBin";
-            RbConvIPDecBin.Size = new Size(205, 19);
-            RbConvIPDecBin.TabIndex = 9;
-            RbConvIPDecBin.TabStop = true;
-            RbConvIPDecBin.Text = "Converter de Decimal para Binário";
-            RbConvIPDecBin.UseVisualStyleBackColor = true;
-            RbConvIPDecBin.CheckedChanged += RbConvIPDecBin_CheckedChanged;
-            // 
             // groupBox5
             // 
             groupBox5.Controls.Add(label7);
             groupBox5.Controls.Add(panel2);
-            groupBox5.Location = new Point(350, 428);
+            groupBox5.Location = new Point(354, 420);
             groupBox5.Name = "groupBox5";
             groupBox5.Size = new Size(207, 91);
             groupBox5.TabIndex = 5;
@@ -420,7 +393,7 @@
             panel2.Controls.Add(TxtQtdHosts);
             panel2.Location = new Point(25, 22);
             panel2.Name = "panel2";
-            panel2.Size = new Size(164, 50);
+            panel2.Size = new Size(164, 47);
             panel2.TabIndex = 4;
             // 
             // TxtQtdHosts
@@ -428,22 +401,23 @@
             TxtQtdHosts.BackColor = SystemColors.AppWorkspace;
             TxtQtdHosts.BorderStyle = BorderStyle.None;
             TxtQtdHosts.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-            TxtQtdHosts.Location = new Point(3, 12);
+            TxtQtdHosts.Location = new Point(3, 11);
             TxtQtdHosts.MaxLength = 3;
             TxtQtdHosts.Name = "TxtQtdHosts";
             TxtQtdHosts.Size = new Size(158, 26);
             TxtQtdHosts.TabIndex = 0;
-            TxtQtdHosts.Text = "16";
+            TxtQtdHosts.Text = "0";
             TxtQtdHosts.TextAlign = HorizontalAlignment.Center;
             // 
             // GpbMascara
             // 
             GpbMascara.Controls.Add(groupBox10);
             GpbMascara.Controls.Add(groupBox11);
+            GpbMascara.Controls.Add(groupBox3);
             GpbMascara.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            GpbMascara.Location = new Point(413, 96);
+            GpbMascara.Location = new Point(413, 22);
             GpbMascara.Name = "GpbMascara";
-            GpbMascara.Size = new Size(386, 204);
+            GpbMascara.Size = new Size(386, 278);
             GpbMascara.TabIndex = 3;
             GpbMascara.TabStop = false;
             GpbMascara.Text = "Máscara";
@@ -452,7 +426,7 @@
             // 
             groupBox10.Controls.Add(TxtMascaraBin);
             groupBox10.Font = new Font("Segoe UI", 9F, FontStyle.Italic, GraphicsUnit.Point);
-            groupBox10.Location = new Point(6, 127);
+            groupBox10.Location = new Point(6, 201);
             groupBox10.Name = "groupBox10";
             groupBox10.Size = new Size(374, 71);
             groupBox10.TabIndex = 11;
@@ -478,7 +452,7 @@
             groupBox11.Controls.Add(label16);
             groupBox11.Controls.Add(label17);
             groupBox11.Font = new Font("Segoe UI", 9F, FontStyle.Italic, GraphicsUnit.Point);
-            groupBox11.Location = new Point(6, 38);
+            groupBox11.Location = new Point(6, 112);
             groupBox11.Name = "groupBox11";
             groupBox11.Size = new Size(374, 83);
             groupBox11.TabIndex = 10;
@@ -508,12 +482,12 @@
             // 
             // TxtCIDRMascDec
             // 
-            TxtCIDRMascDec.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            TxtCIDRMascDec.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
             TxtCIDRMascDec.Location = new Point(326, 43);
             TxtCIDRMascDec.MaxLength = 2;
             TxtCIDRMascDec.Name = "TxtCIDRMascDec";
             TxtCIDRMascDec.ReadOnly = true;
-            TxtCIDRMascDec.Size = new Size(37, 25);
+            TxtCIDRMascDec.Size = new Size(37, 27);
             TxtCIDRMascDec.TabIndex = 6;
             TxtCIDRMascDec.Text = "24";
             TxtCIDRMascDec.TextAlign = HorizontalAlignment.Center;
@@ -538,14 +512,53 @@
             label17.TabIndex = 4;
             label17.Text = "Máscara padrão";
             // 
+            // groupBox3
+            // 
+            groupBox3.Controls.Add(RbConvMascDecBin);
+            groupBox3.Controls.Add(RbConvMascBinDec);
+            groupBox3.Location = new Point(15, 26);
+            groupBox3.Name = "groupBox3";
+            groupBox3.Size = new Size(354, 65);
+            groupBox3.TabIndex = 13;
+            groupBox3.TabStop = false;
+            groupBox3.Text = "Tipo de conversão";
+            // 
+            // RbConvMascDecBin
+            // 
+            RbConvMascDecBin.AutoSize = true;
+            RbConvMascDecBin.Checked = true;
+            RbConvMascDecBin.Font = new Font("Segoe UI", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            RbConvMascDecBin.Location = new Point(76, 19);
+            RbConvMascDecBin.Name = "RbConvMascDecBin";
+            RbConvMascDecBin.Size = new Size(199, 17);
+            RbConvMascDecBin.TabIndex = 11;
+            RbConvMascDecBin.TabStop = true;
+            RbConvMascDecBin.Text = "Converter de Decimal para Binário";
+            RbConvMascDecBin.UseVisualStyleBackColor = true;
+            RbConvMascDecBin.CheckedChanged += RbConvMascDecBin_CheckedChanged;
+            // 
+            // RbConvMascBinDec
+            // 
+            RbConvMascBinDec.AutoSize = true;
+            RbConvMascBinDec.Font = new Font("Segoe UI", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            RbConvMascBinDec.Location = new Point(76, 39);
+            RbConvMascBinDec.Name = "RbConvMascBinDec";
+            RbConvMascBinDec.Size = new Size(199, 17);
+            RbConvMascBinDec.TabIndex = 12;
+            RbConvMascBinDec.TabStop = true;
+            RbConvMascBinDec.Text = "Converter de Binário para Decimal";
+            RbConvMascBinDec.UseVisualStyleBackColor = true;
+            RbConvMascBinDec.CheckedChanged += RbConvMascBinDec_CheckedChanged;
+            // 
             // GpbIPv4
             // 
             GpbIPv4.Controls.Add(GpbIPv4EndBin);
             GpbIPv4.Controls.Add(GpbIPv4EndDec);
+            GpbIPv4.Controls.Add(groupBox2);
             GpbIPv4.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            GpbIPv4.Location = new Point(6, 96);
+            GpbIPv4.Location = new Point(6, 22);
             GpbIPv4.Name = "GpbIPv4";
-            GpbIPv4.Size = new Size(391, 204);
+            GpbIPv4.Size = new Size(391, 278);
             GpbIPv4.TabIndex = 2;
             GpbIPv4.TabStop = false;
             GpbIPv4.Text = "IPv4";
@@ -554,7 +567,7 @@
             // 
             GpbIPv4EndBin.Controls.Add(TxtEnderecoIPBin);
             GpbIPv4EndBin.Font = new Font("Segoe UI", 9F, FontStyle.Italic, GraphicsUnit.Point);
-            GpbIPv4EndBin.Location = new Point(6, 127);
+            GpbIPv4EndBin.Location = new Point(6, 201);
             GpbIPv4EndBin.Name = "GpbIPv4EndBin";
             GpbIPv4EndBin.Size = new Size(379, 71);
             GpbIPv4EndBin.TabIndex = 9;
@@ -569,7 +582,7 @@
             TxtEnderecoIPBin.Name = "TxtEnderecoIPBin";
             TxtEnderecoIPBin.Size = new Size(354, 27);
             TxtEnderecoIPBin.TabIndex = 6;
-            TxtEnderecoIPBin.Text = "11000000.10101000.00000000.00000001";
+            TxtEnderecoIPBin.Text = "00000000.00000000.00000000.00000000";
             TxtEnderecoIPBin.TextAlign = HorizontalAlignment.Center;
             // 
             // GpbIPv4EndDec
@@ -580,7 +593,7 @@
             GpbIPv4EndDec.Controls.Add(label3);
             GpbIPv4EndDec.Controls.Add(label4);
             GpbIPv4EndDec.Font = new Font("Segoe UI", 9F, FontStyle.Italic, GraphicsUnit.Point);
-            GpbIPv4EndDec.Location = new Point(6, 38);
+            GpbIPv4EndDec.Location = new Point(6, 112);
             GpbIPv4EndDec.Name = "GpbIPv4EndDec";
             GpbIPv4EndDec.Size = new Size(379, 83);
             GpbIPv4EndDec.TabIndex = 8;
@@ -595,7 +608,7 @@
             TxtEnderecoIPDec.Name = "TxtEnderecoIPDec";
             TxtEnderecoIPDec.Size = new Size(298, 27);
             TxtEnderecoIPDec.TabIndex = 5;
-            TxtEnderecoIPDec.Text = "192.168.0.1";
+            TxtEnderecoIPDec.Text = "0.0.0.0";
             TxtEnderecoIPDec.TextAlign = HorizontalAlignment.Center;
             // 
             // label2
@@ -610,14 +623,13 @@
             // 
             // TxtCIDREndIPDec
             // 
-            TxtCIDREndIPDec.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            TxtCIDREndIPDec.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
             TxtCIDREndIPDec.Location = new Point(326, 43);
             TxtCIDREndIPDec.MaxLength = 2;
             TxtCIDREndIPDec.Name = "TxtCIDREndIPDec";
-            TxtCIDREndIPDec.ReadOnly = true;
-            TxtCIDREndIPDec.Size = new Size(37, 25);
+            TxtCIDREndIPDec.Size = new Size(37, 27);
             TxtCIDREndIPDec.TabIndex = 6;
-            TxtCIDREndIPDec.Text = "24";
+            TxtCIDREndIPDec.Text = "0";
             TxtCIDREndIPDec.TextAlign = HorizontalAlignment.Center;
             // 
             // label3
@@ -640,41 +652,43 @@
             label4.TabIndex = 4;
             label4.Text = "Endereço";
             // 
-            // groupBox3
+            // groupBox2
             // 
-            groupBox3.Controls.Add(RbConvMascDecBin);
-            groupBox3.Controls.Add(RbConvMascBinDec);
-            groupBox3.Location = new Point(413, 22);
-            groupBox3.Name = "groupBox3";
-            groupBox3.Size = new Size(386, 65);
-            groupBox3.TabIndex = 13;
-            groupBox3.TabStop = false;
-            groupBox3.Text = "Máscara  | Tipo de conversão";
+            groupBox2.Controls.Add(RbConvIPBinDec);
+            groupBox2.Controls.Add(RbConvIPDecBin);
+            groupBox2.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            groupBox2.Location = new Point(20, 26);
+            groupBox2.Name = "groupBox2";
+            groupBox2.Size = new Size(354, 65);
+            groupBox2.TabIndex = 11;
+            groupBox2.TabStop = false;
+            groupBox2.Text = "Tipo de conversão";
             // 
-            // RbConvMascDecBin
+            // RbConvIPBinDec
             // 
-            RbConvMascDecBin.AutoSize = true;
-            RbConvMascDecBin.Checked = true;
-            RbConvMascDecBin.Location = new Point(76, 19);
-            RbConvMascDecBin.Name = "RbConvMascDecBin";
-            RbConvMascDecBin.Size = new Size(205, 19);
-            RbConvMascDecBin.TabIndex = 11;
-            RbConvMascDecBin.TabStop = true;
-            RbConvMascDecBin.Text = "Converter de Decimal para Binário";
-            RbConvMascDecBin.UseVisualStyleBackColor = true;
-            RbConvMascDecBin.CheckedChanged += RbConvMascDecBin_CheckedChanged;
+            RbConvIPBinDec.AutoSize = true;
+            RbConvIPBinDec.Font = new Font("Segoe UI", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            RbConvIPBinDec.Location = new Point(93, 39);
+            RbConvIPBinDec.Name = "RbConvIPBinDec";
+            RbConvIPBinDec.Size = new Size(199, 17);
+            RbConvIPBinDec.TabIndex = 10;
+            RbConvIPBinDec.Text = "Converter de Binário para Decimal";
+            RbConvIPBinDec.UseVisualStyleBackColor = true;
+            RbConvIPBinDec.CheckedChanged += RbConvIPBinDec_CheckedChanged;
             // 
-            // RbConvMascBinDec
+            // RbConvIPDecBin
             // 
-            RbConvMascBinDec.AutoSize = true;
-            RbConvMascBinDec.Location = new Point(76, 39);
-            RbConvMascBinDec.Name = "RbConvMascBinDec";
-            RbConvMascBinDec.Size = new Size(205, 19);
-            RbConvMascBinDec.TabIndex = 12;
-            RbConvMascBinDec.TabStop = true;
-            RbConvMascBinDec.Text = "Converter de Binário para Decimal";
-            RbConvMascBinDec.UseVisualStyleBackColor = true;
-            RbConvMascBinDec.CheckedChanged += RbConvMascBinDec_CheckedChanged;
+            RbConvIPDecBin.AutoSize = true;
+            RbConvIPDecBin.Checked = true;
+            RbConvIPDecBin.Font = new Font("Segoe UI", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            RbConvIPDecBin.Location = new Point(93, 19);
+            RbConvIPDecBin.Name = "RbConvIPDecBin";
+            RbConvIPDecBin.Size = new Size(199, 17);
+            RbConvIPDecBin.TabIndex = 9;
+            RbConvIPDecBin.TabStop = true;
+            RbConvIPDecBin.Text = "Converter de Decimal para Binário";
+            RbConvIPDecBin.UseVisualStyleBackColor = true;
+            RbConvIPDecBin.CheckedChanged += RbConvIPDecBin_CheckedChanged;
             // 
             // MnuPrincipal
             // 
@@ -709,6 +723,7 @@
             // 
             // MnuSair
             // 
+            MnuSair.Image = (Image)resources.GetObject("MnuSair.Image");
             MnuSair.Name = "MnuSair";
             MnuSair.Size = new Size(146, 22);
             MnuSair.Text = "S&air";
@@ -716,17 +731,31 @@
             // 
             // MnuFerramentas
             // 
-            MnuFerramentas.DropDownItems.AddRange(new ToolStripItem[] { MnuCalculadora });
+            MnuFerramentas.DropDownItems.AddRange(new ToolStripItem[] { MnuCalculadora, toolStripSeparator2, MnuBlocoDeNotas });
             MnuFerramentas.Name = "MnuFerramentas";
             MnuFerramentas.Size = new Size(84, 20);
             MnuFerramentas.Text = "&Ferramentas";
             // 
             // MnuCalculadora
             // 
+            MnuCalculadora.Image = (Image)resources.GetObject("MnuCalculadora.Image");
             MnuCalculadora.Name = "MnuCalculadora";
             MnuCalculadora.Size = new Size(180, 22);
             MnuCalculadora.Text = "&Calculadora";
             MnuCalculadora.Click += MnuCalculadora_Click;
+            // 
+            // toolStripSeparator2
+            // 
+            toolStripSeparator2.Name = "toolStripSeparator2";
+            toolStripSeparator2.Size = new Size(177, 6);
+            // 
+            // MnuBlocoDeNotas
+            // 
+            MnuBlocoDeNotas.Image = (Image)resources.GetObject("MnuBlocoDeNotas.Image");
+            MnuBlocoDeNotas.Name = "MnuBlocoDeNotas";
+            MnuBlocoDeNotas.Size = new Size(180, 22);
+            MnuBlocoDeNotas.Text = "Bloco de notas";
+            MnuBlocoDeNotas.Click += MnuBlocoDeNotas_Click;
             // 
             // MnuSobre
             // 
@@ -737,9 +766,11 @@
             // 
             // MnuSobreEsteSoftware
             // 
+            MnuSobreEsteSoftware.Image = (Image)resources.GetObject("MnuSobreEsteSoftware.Image");
             MnuSobreEsteSoftware.Name = "MnuSobreEsteSoftware";
             MnuSobreEsteSoftware.Size = new Size(176, 22);
             MnuSobreEsteSoftware.Text = "&Sobre este software";
+            MnuSobreEsteSoftware.Click += MnuSobreEsteSoftware_Click;
             // 
             // FrmPrincipal
             // 
@@ -748,6 +779,7 @@
             ClientSize = new Size(829, 654);
             Controls.Add(groupBox1);
             Controls.Add(MnuPrincipal);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             MainMenuStrip = MnuPrincipal;
             Name = "FrmPrincipal";
             StartPosition = FormStartPosition.CenterScreen;
@@ -769,8 +801,6 @@
             GpbEndRedeBroadcast.ResumeLayout(false);
             GpbEndRedeBroadcast.PerformLayout();
             groupBox6.ResumeLayout(false);
-            groupBox2.ResumeLayout(false);
-            groupBox2.PerformLayout();
             groupBox5.ResumeLayout(false);
             groupBox5.PerformLayout();
             panel2.ResumeLayout(false);
@@ -780,13 +810,15 @@
             groupBox10.PerformLayout();
             groupBox11.ResumeLayout(false);
             groupBox11.PerformLayout();
+            groupBox3.ResumeLayout(false);
+            groupBox3.PerformLayout();
             GpbIPv4.ResumeLayout(false);
             GpbIPv4EndBin.ResumeLayout(false);
             GpbIPv4EndBin.PerformLayout();
             GpbIPv4EndDec.ResumeLayout(false);
             GpbIPv4EndDec.PerformLayout();
-            groupBox3.ResumeLayout(false);
-            groupBox3.PerformLayout();
+            groupBox2.ResumeLayout(false);
+            groupBox2.PerformLayout();
             MnuPrincipal.ResumeLayout(false);
             MnuPrincipal.PerformLayout();
             ResumeLayout(false);
@@ -854,5 +886,7 @@
         private Label label9;
         private Panel panel4;
         private TextBox TxtClasseIP;
+        private ToolStripSeparator toolStripSeparator2;
+        private ToolStripMenuItem MnuBlocoDeNotas;
     }
 }

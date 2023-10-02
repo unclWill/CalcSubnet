@@ -1,6 +1,8 @@
 using System.Diagnostics;
+using System.Drawing.Configuration;
 using System.Windows.Forms;
 using CalcSubnet.Classes;
+using CalcSubnet.Forms;
 
 namespace CalcSubnet
 {
@@ -50,6 +52,18 @@ namespace CalcSubnet
         #endregion
 
         #region Propriedades dos TextBoxes que exibem os resultados em quantidades.
+        public string TxtClasseDoIP
+        {
+            get => TxtClasseIP.Text;
+            set => TxtClasseIP.Text = value;
+        }
+
+        public TextBox TxtClasseDoIPCor
+        {
+            //get => TxtClasseIP.BackColor = Color.PaleGreen;
+            set => TxtClasseIP.BackColor = value.BackColor;
+        }
+
         public string TxtQtdDeSubredes
         {
             get => TxtQtdSubredes.Text;
@@ -106,7 +120,32 @@ namespace CalcSubnet
 
         private void MnuCalculadora_Click(object sender, EventArgs e)
         {
-            Process.Start("Calc.exe");
+            try
+            {
+                Process.Start("Calc.exe");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Desculpe, mas este recurso não pode ser acessado no momento.\n\nDatalhe do erro: {ex}", "Recurso indisponível", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void MnuBlocoDeNotas_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Process.Start("Notepad.exe");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Desculpe, mas este recurso não pode ser acessado no momento.\n\nDatalhe do erro: {ex}", "Recurso indisponível", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void MnuSobreEsteSoftware_Click(object sender, EventArgs e)
+        {
+            FrmSobre sobre = new FrmSobre();
+            sobre.ShowDialog();
         }
         #endregion
 
@@ -114,12 +153,26 @@ namespace CalcSubnet
         private void BtnCalcular_Click(object sender, EventArgs e)
         {
             EnderecoIP enderecoIPV4 = new EnderecoIP(this);
-            enderecoIPV4.ConverterIP();
+
+            if (TipoDeConversaoIP == false)
+            {
+                enderecoIPV4.ConverterIPDecimalParaBinario();
+            }
+            else
+            {
+                enderecoIPV4.ConverterIPBinarioParaDecimal();
+            }
 
             Mascara mascara = new Mascara(this);
-            mascara.ConverterMascara();
 
-            //mascara.DeterminarQtdSubredes();
+            if (TipoDeConversaoMascara == false)
+            {
+                mascara.ConverterMascaraDecimalParaBinario();
+            }
+            else
+            {
+                mascara.ConverterMascaraBinarioParaDecimal();
+            }
         }
 
         private void BtnResetarCampos_Click(object sender, EventArgs e)
@@ -191,5 +244,6 @@ namespace CalcSubnet
             SelTipoConversaoMascara();
         }
         #endregion
+
     }
 }

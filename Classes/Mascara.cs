@@ -29,90 +29,88 @@ namespace CalcSubnet.Classes
             return base.ConverterBinarioParaDecimal(octeto);
         }
 
-        internal void ConverterMascara()
+        internal void ConverterMascaraDecimalParaBinario()
         {
-            if (formPrincipal.TipoDeConversaoMascara == false)
+            try
             {
-                try
+                string[] enderecoDigitado = formPrincipal.TxtMascaraDecimal.Trim().Split('.');
+                int[] enderecoIPv4 = Array.ConvertAll(enderecoDigitado, int.Parse);
+
+                List<string> octeto1 = new List<string>(), octeto2 = new List<string>(), octeto3 = new List<string>(), octeto4 = new List<string>();
+                string pOcteto = string.Empty, sOcteto = string.Empty, tOcteto = string.Empty, qOcteto = string.Empty;
+
+                int contOcteto = 0;
+                foreach (int octeto in enderecoIPv4)
                 {
-                    string[] enderecoDigitado = formPrincipal.TxtMascaraDecimal.Trim().Split('.');
-                    int[] enderecoIPv4 = Array.ConvertAll(enderecoDigitado, int.Parse);
+                    contOcteto++;
 
-                    List<string> octeto1 = new List<string>(), octeto2 = new List<string>(), octeto3 = new List<string>(), octeto4 = new List<string>();
-                    string pOcteto = string.Empty, sOcteto = string.Empty, tOcteto = string.Empty, qOcteto = string.Empty;
-
-                    int contOcteto = 0;
-                    foreach (int octeto in enderecoIPv4)
+                    switch (contOcteto)
                     {
-                        contOcteto++;
-
-                        switch (contOcteto)
-                        {
-                            case 1:
-                                octeto1 = ConverterDecimalParaBinario(octeto);
-                                pOcteto = string.Join("", octeto1);
-                                break;
-                            case 2:
-                                octeto2 = ConverterDecimalParaBinario(octeto); ;
-                                sOcteto = string.Join("", octeto2);
-                                break;
-                            case 3:
-                                octeto3 = ConverterDecimalParaBinario(octeto);
-                                tOcteto = string.Join("", octeto3);
-                                break;
-                            case 4:
-                                octeto4 = ConverterDecimalParaBinario(octeto);
-                                qOcteto = string.Join("", octeto4);
-                                break;
-                        }
+                        case 1:
+                            octeto1 = ConverterDecimalParaBinario(octeto);
+                            pOcteto = string.Join("", octeto1);
+                            break;
+                        case 2:
+                            octeto2 = ConverterDecimalParaBinario(octeto); ;
+                            sOcteto = string.Join("", octeto2);
+                            break;
+                        case 3:
+                            octeto3 = ConverterDecimalParaBinario(octeto);
+                            tOcteto = string.Join("", octeto3);
+                            break;
+                        case 4:
+                            octeto4 = ConverterDecimalParaBinario(octeto);
+                            qOcteto = string.Join("", octeto4);
+                            break;
                     }
-
-                    DeterminarQtdDeHostsESubredes(pOcteto, sOcteto, tOcteto, qOcteto);
-
-                    formPrincipal.TxtMascaraBinario = pOcteto + "." + sOcteto + "." + tOcteto + "." + qOcteto;
                 }
-                catch (Exception)
-                {
-                    MessageBox.Show("Ocorreu um erro!\n O campo endereço não pode estar vazio.");
-                }
+
+                DeterminarQtdDeHostsESubredes(pOcteto, sOcteto, tOcteto, qOcteto);
+
+                formPrincipal.TxtMascaraBinario = pOcteto + "." + sOcteto + "." + tOcteto + "." + qOcteto;
             }
-            else if (formPrincipal.TipoDeConversaoMascara == true)
+            catch (Exception)
             {
-                try
-                {
-                    string[] enderecoDigitado = formPrincipal.TxtMascaraBinario.Trim().Split('.');
-                    int octeto1 = 0, octeto2 = 0, octeto3 = 0, octeto4 = 0;
+                MessageBox.Show("Ocorreu um erro!\n O campo endereço não pode estar vazio.");
+            }
+        }
 
-                    int contOcteto = 0;
-                    foreach (string octeto in enderecoDigitado)
+        internal void ConverterMascaraBinarioParaDecimal()
+        {
+            try
+            {
+                string[] enderecoDigitado = formPrincipal.TxtMascaraBinario.Trim().Split('.');
+                int octeto1 = 0, octeto2 = 0, octeto3 = 0, octeto4 = 0;
+
+                int contOcteto = 0;
+                foreach (string octeto in enderecoDigitado)
+                {
+                    contOcteto++;
+
+                    switch (contOcteto)
                     {
-                        contOcteto++;
-
-                        switch (contOcteto)
-                        {
-                            case 1:
-                                octeto1 = ConverterBinarioParaDecimal(octeto);
-                                break;
-                            case 2:
-                                octeto2 = ConverterBinarioParaDecimal(octeto);
-                                break;
-                            case 3:
-                                octeto3 = ConverterBinarioParaDecimal(octeto);
-                                break;
-                            case 4:
-                                octeto4 = ConverterBinarioParaDecimal(octeto);
-                                break;
-                        }
+                        case 1:
+                            octeto1 = ConverterBinarioParaDecimal(octeto);
+                            break;
+                        case 2:
+                            octeto2 = ConverterBinarioParaDecimal(octeto);
+                            break;
+                        case 3:
+                            octeto3 = ConverterBinarioParaDecimal(octeto);
+                            break;
+                        case 4:
+                            octeto4 = ConverterBinarioParaDecimal(octeto);
+                            break;
                     }
-
-                    DeterminarCIDR(enderecoDigitado);
-
-                    formPrincipal.TxtMascaraDecimal = octeto1.ToString() + "." + octeto2.ToString() + "." + octeto3.ToString() + "." + octeto4.ToString();
                 }
-                catch (Exception)
-                {
-                    MessageBox.Show("Ocorreu um erro!\n O campo máscara não pode estar vazio.");
-                }
+
+                DeterminarCIDR(enderecoDigitado);
+
+                formPrincipal.TxtMascaraDecimal = octeto1.ToString() + "." + octeto2.ToString() + "." + octeto3.ToString() + "." + octeto4.ToString();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Ocorreu um erro!\n O campo máscara não pode estar vazio.");
             }
         }
 
@@ -208,9 +206,19 @@ namespace CalcSubnet.Classes
         {
             const string valorPadraoDecimal = "255.255.255.0";
             const string valorPadraoBinario = "11111111.11111111.11111111.00000000";
+            const string valorPadraoCIDR = "24";
+            //
+            const string valorPadraoClasseIP = "INDF";
+            const string valorPadraoResultados = "0";
 
             formPrincipal.TxtMascaraDecimal = valorPadraoDecimal;
             formPrincipal.TxtMascaraBinario = valorPadraoBinario;
+            formPrincipal.TxtCIDRMascaraDecimal = valorPadraoCIDR;
+            //
+            formPrincipal.TxtClasseDoIP = valorPadraoClasseIP;
+            //formPrincipal.TxtClasseDoIPCor.BackColor = Color.White;
+            formPrincipal.TxtQtdDeSubredes = valorPadraoResultados;
+            formPrincipal.TxtQtdDeHosts = valorPadraoResultados;
         }
     }
 }
