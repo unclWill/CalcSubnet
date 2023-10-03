@@ -105,6 +105,18 @@ namespace CalcSubnet
             get => RtxtMensagens.Text;
             set => RtxtMensagens.Text = value;
         }
+
+        public string TxtEnderecoDeRede
+        {
+            get => TxtEnderecoIPDeRede.Text;
+            set => TxtEnderecoIPDeRede.Text = value;
+        }
+
+        public string TxtEnderecoDeBroadcast
+        {
+            get => TxtEnderecoIPDeBroadcast.Text;
+            set => TxtEnderecoIPDeBroadcast.Text = value;
+        }
         #endregion
 
         public FrmPrincipal()
@@ -180,6 +192,10 @@ namespace CalcSubnet
 
         private void TxtCIDREndIP_TextChanged(object sender, EventArgs e)
         {
+            if (TxtCIDREndIP.TextLength == 0)
+            {
+                TxtCIDREndIP.Text = "0";
+            }
             RbConvMascBinDec.Checked = true;
             TxtCIDRMasc.Text = TxtCIDREndIP.Text;
             int qtd1s = int.Parse(TxtCIDREndIP.Text);
@@ -191,7 +207,7 @@ namespace CalcSubnet
         {
             const int qtdDeBits = 32;
             StringBuilder gerarMascara = new StringBuilder(qtdDeBits);
-            
+
             for (int i = 0; i < qtdDeBits; i++)
             {
                 if (i < qtd1s)

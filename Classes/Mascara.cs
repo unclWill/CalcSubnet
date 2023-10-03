@@ -5,6 +5,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Sockets;
 
 namespace CalcSubnet.Classes
@@ -143,9 +144,9 @@ namespace CalcSubnet.Classes
                         }
                     }
 
-                    DeterminarCIDR(enderecoDigitado);
-
-                    //DeterminarQtdDeHostsESubredes(octeto1, octeto2, octeto3, octeto4);
+                    //DeterminarCIDR(enderecoDigitado);
+                    DeterminarQtdSubredes(enderecoDigitado);
+                    //formPrincipal.TxtQtdDeHosts = DeterminarQtdHosts(enderecoDigitado).ToString();
 
                     formPrincipal.TxtMascaraDecimal = octeto1.ToString() + "." + octeto2.ToString() + "." + octeto3.ToString() + "." + octeto4.ToString();
                 }
@@ -210,7 +211,7 @@ namespace CalcSubnet.Classes
         }
 
         // Determina o CIDR com base no array lido. Utilizado na conversão BIN para DEC.
-        private void DeterminarCIDR(string[] mascara)
+        private int DeterminarCIDR(string[] mascara)
         {
             string tamanhoSubrede = string.Join("", mascara);
 
@@ -230,14 +231,39 @@ namespace CalcSubnet.Classes
                 }
             }
 
-            formPrincipal.TxtCIDRMascaraDecimal = qtd1s.ToString();
-
+            //formPrincipal.TxtCIDRMascaraDecimal = qtd1s.ToString();
+            return qtd1s;
         }
 
         private void DeterminarQtdDeHostsESubredes(string octeto1, string octeto2, string octeto3, string octeto4)
         {
             DeterminarQtdHosts(octeto1, octeto2, octeto3, octeto4);
             DeterminarQtdSubredes(octeto1, octeto2, octeto3, octeto4);
+        }
+
+        private int DeterminarQtdHosts(string[] endereco)
+        {
+            int qtd0s = 0;
+            string enderecoSemPonto = string.Empty;
+
+            for (int i = 0; i < endereco.Length; i++)
+            {
+                enderecoSemPonto = string.Join("", endereco);
+            }
+
+            for (int j = 0; j < enderecoSemPonto.Length; j++)
+            {
+                char carac0 = '0';
+
+                if (enderecoSemPonto[j] == carac0)
+                {
+                    qtd0s++;
+                }
+            }
+
+            //int qtdDeHosts = (int)Math.Pow(2, qtd0s) - 2;
+            //formPrincipal.TxtQtdDeHosts = qtdDeHosts.ToString();
+            return qtd0s;
         }
 
         private void DeterminarQtdHosts(string octeto1, string octeto2, string octeto3, string octeto4)
@@ -261,15 +287,58 @@ namespace CalcSubnet.Classes
             formPrincipal.TxtQtdDeHosts = qtdDeHosts.ToString();
         }
 
+        private void DeterminarQtdSubredes(string[] endereco)
+        {
+            string octetoMisto = string.Empty;
+
+            for (int i = 0; i < endereco.Length; i++)
+            {
+                if (endereco[i].Contains('0'))
+                {
+                    octetoMisto = endereco[i];
+                    break;
+                }
+            }
+
+            int qtdDigitos1 = 0;
+            int qtdDigitos0 = 0;
+
+            for (int j = 0; j < octetoMisto.Length; j++)
+            {
+                if (octetoMisto[j] == '1')
+                {
+                    qtdDigitos1++;
+                }
+                else
+                {
+                    qtdDigitos0++;
+                }
+            }
+
+            int qtdDeSubredes = ((int)Math.Pow(2, qtdDigitos1));
+            //
+            int qtdHostsPorSubRede = (int)Math.Pow(2, qtdDigitos0) - 2;
+            //
+            int qtdHostsPossiveis = (int)Math.Pow(2, qtdDigitos1) * 255;
+
+            formPrincipal.TxtQtdDeSubredes = qtdDeSubredes.ToString();
+            formPrincipal.TxtQtdDeHosts = qtdHostsPorSubRede.ToString();
+            formPrincipal.TxtQtdHostsPossiveisPorSubrede = qtdHostsPossiveis.ToString();
+            //
+            formPrincipal.TxtEnderecoDeRede = formPrincipal.TxtEnderecoIPDecimal.ToString();
+        }
+
         private void DeterminarQtdSubredes(string octeto1, string octeto2, string octeto3, string octeto4)
         {
             int qtd1s = DeterminarCIDR(octeto1, octeto2, octeto3, octeto4);
 
-            int qtdDeSubredes = (int)Math.Pow(2, qtd1s);
+            int sub = (32 - qtd1s) % 8;
+
+            int qtdDeSubredes = (int)Math.Pow(2, sub);
             int qtdHostsPossiveis = (int)Math.Pow(2, qtd1s);
 
             formPrincipal.TxtCIDRMascaraDecimal = qtd1s.ToString();
-            formPrincipal.TxtQtdDeSubredes = qtdDeSubredes.ToString("N2");
+            formPrincipal.TxtQtdDeSubredes = qtdDeSubredes.ToString();
             formPrincipal.TxtQtdHostsPossiveisPorSubrede = qtdHostsPossiveis.ToString("N2");
         }
 

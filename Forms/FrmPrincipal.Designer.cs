@@ -703,7 +703,7 @@
             groupBox5.Size = new Size(207, 91);
             groupBox5.TabIndex = 5;
             groupBox5.TabStop = false;
-            groupBox5.Text = "Quantidade de hosts";
+            groupBox5.Text = "Quantidade de hosts configuráveis";
             // 
             // label7
             // 
