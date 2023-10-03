@@ -3,7 +3,7 @@
 #### Notas 
 
 - Este projeto está em desenvolvimento e ainda não possui todas as funcionalidades operacionais.
-- Os requisitos foram escritos depois que o projeto já estava em andamento. Ou seja, comecei a escrever o programa seguindo apenas o que estava na minha cabeça sem um planejamento adequado, ***não faça isso!***.
+- Os requisitos foram escritos depois que o projeto já estava em andamento. Ou seja, comecei a escrever o programa seguindo apenas o que estava na minha cabeça sem um planejamento adequado, ***não faça isso!*** :neutral_face:.
 
 #### Motivação 
 - Automatizar o processo de cálculo de sub-redes, utilizando a notação CIDR.
