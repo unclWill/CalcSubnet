@@ -144,9 +144,7 @@ namespace CalcSubnet.Classes
                         }
                     }
 
-                    //DeterminarCIDR(enderecoDigitado);
                     DeterminarQtdSubredes(enderecoDigitado);
-                    //formPrincipal.TxtQtdDeHosts = DeterminarQtdHosts(enderecoDigitado).ToString();
 
                     formPrincipal.TxtMascaraDecimal = octeto1.ToString() + "." + octeto2.ToString() + "." + octeto3.ToString() + "." + octeto4.ToString();
                 }
@@ -231,7 +229,6 @@ namespace CalcSubnet.Classes
                 }
             }
 
-            //formPrincipal.TxtCIDRMascaraDecimal = qtd1s.ToString();
             return qtd1s;
         }
 
@@ -261,8 +258,6 @@ namespace CalcSubnet.Classes
                 }
             }
 
-            //int qtdDeHosts = (int)Math.Pow(2, qtd0s) - 2;
-            //formPrincipal.TxtQtdDeHosts = qtdDeHosts.ToString();
             return qtd0s;
         }
 
