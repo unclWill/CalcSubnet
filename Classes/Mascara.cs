@@ -7,18 +7,49 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Sockets;
+using System.Security.Policy;
+using System.Text;
 
 namespace CalcSubnet.Classes
 {
     internal class Mascara : Conversoes
     {
         private readonly FrmPrincipal formPrincipal;
+
         public Mascara(FrmPrincipal frmPrincipal)
         {
             this.formPrincipal = frmPrincipal;
         }
 
         public Mascara() { }
+
+        /* Monta a máscara de sub-rede binária em tempo real, de acordo com o valor inserido no campo CIDR
+         * na definição do endereço IPv4.
+         */ 
+        internal string InserirDigitosBin(int qtdDigitos1)
+        {
+            const int qtdDeBits = 32;
+            StringBuilder gerarMascara = new StringBuilder(qtdDeBits);
+
+            for (int i = 0; i < qtdDeBits; i++)
+            {
+                if (i < qtdDigitos1)
+                {
+                    gerarMascara.Append('1');
+                }
+                else
+                {
+                    gerarMascara.Append('0');
+                }
+
+                if ((i + 1) % 8 == 0 && i < qtdDeBits - 1)
+                {
+                    gerarMascara.Append('.');
+                }
+            }
+
+            return gerarMascara.ToString();
+        }
 
         protected override List<string> ConverterDecimalParaBinario(int octeto)
         {

@@ -192,41 +192,19 @@ namespace CalcSubnet
 
         private void TxtCIDREndIP_TextChanged(object sender, EventArgs e)
         {
+            Mascara mascara = new Mascara();
+
             if (TxtCIDREndIP.TextLength == 0)
             {
                 TxtCIDREndIP.Text = "0";
             }
+            
             RbConvMascBinDec.Checked = true;
             TxtCIDRMasc.Text = TxtCIDREndIP.Text;
             int qtd1s = int.Parse(TxtCIDREndIP.Text);
-            TxtMascaraBin.Text = InserirDigitosBin(qtd1s).ToString();
+            TxtMascaraBin.Text = mascara.InserirDigitosBin(qtd1s);
         }
         #endregion
-
-        static string InserirDigitosBin(int qtd1s)
-        {
-            const int qtdDeBits = 32;
-            StringBuilder gerarMascara = new StringBuilder(qtdDeBits);
-
-            for (int i = 0; i < qtdDeBits; i++)
-            {
-                if (i < qtd1s)
-                {
-                    gerarMascara.Append('1');
-                }
-                else
-                {
-                    gerarMascara.Append('0');
-                }
-
-                if ((i + 1) % 8 == 0 && i < qtdDeBits - 1)
-                {
-                    gerarMascara.Append('.');
-                }
-            }
-
-            return gerarMascara.ToString();
-        }
 
         private void HabilitarBotaoCalcular()
         {
@@ -238,16 +216,6 @@ namespace CalcSubnet
             {
                 BtnCalcular.Enabled = true;
             }
-
-            /*
-            if ((TxtEnderecoIPBin.Text == "00000000.00000000.00000000.00000000") || (string.IsNullOrWhiteSpace(TxtEnderecoIPBin.Text)) || (string.IsNullOrEmpty(TxtEnderecoIPBin.Text)))
-            {
-                BtnCalcular.Enabled = false;
-            }
-            else
-            {
-                BtnCalcular.Enabled = true;
-            }*/
         }
 
         #region Eventos dos botões
