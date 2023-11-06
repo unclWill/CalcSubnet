@@ -164,8 +164,6 @@ namespace CalcSubnet.Classes
                     }
                     formPrincipal.TxtEnderecoIPDecimal = octeto1.ToString() + "." + octeto2.ToString() + "." + octeto3.ToString() + "." + octeto4.ToString();
                 }
-
-
             }
             catch (Exception)
             {

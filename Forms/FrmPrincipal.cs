@@ -9,8 +9,8 @@ namespace CalcSubnet
 {
     public partial class FrmPrincipal : Form
     {
-        private static bool tipoDeConversaoIP = false; // Decimal para Binário (padrão)
-        private static bool tipoDeConversaoMascara = false; // Decimal para Binário (padrão)
+        private static bool tipoDeConversaoIP = false; // Decimal para Binário (valor padrão)
+        private static bool tipoDeConversaoMascara = false; // Decimal para Binário (valor padrão)
 
         #region Propriedades dos estados dos RadioButtons de tipo de conversão
         public bool TipoDeConversaoIP

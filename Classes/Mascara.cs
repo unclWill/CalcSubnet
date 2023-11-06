@@ -23,9 +23,11 @@ namespace CalcSubnet.Classes
 
         public Mascara() { }
 
-        /* Monta a máscara de sub-rede binária em tempo real, de acordo com o valor inserido no campo CIDR
-         * na definição do endereço IPv4.
-         */ 
+        /// <summary>
+        /// Monta a máscara de sub-rede binária em tempo real, de acordo com o valor inserido no campo CIDR na definição do endereço IPv4.
+        /// </summary>
+        /// <param name="qtdDigitos1">Quantidade de dígitos 1, referentes à porção de rede.</param>
+        /// <returns>Retorna a máscara binária com a quantidade de dígitos 1 equivalente ao campo CIDR.</returns>
         internal string InserirDigitosBin(int qtdDigitos1)
         {
             const int qtdDeBits = 32;
@@ -99,10 +101,7 @@ namespace CalcSubnet.Classes
                         }
                     }
 
-                    DeterminarQtdDeHostsESubredes(pOcteto, sOcteto, tOcteto, qOcteto);
                     formPrincipal.TxtMascaraBinario = pOcteto + "." + sOcteto + "." + tOcteto + "." + qOcteto;
-
-                    //formPrincipal.TxtCIDRMascaraDecimal = formPrincipal.TxtCIDREnderecoIPDecimal;
                 }
                 else
                 {
@@ -131,7 +130,6 @@ namespace CalcSubnet.Classes
                                 break;
                         }
                     }
-
 
                     formPrincipal.TxtCIDRMascaraDecimal = DeterminarCIDR(pOcteto, sOcteto, tOcteto, qOcteto).ToString();
                     formPrincipal.TxtMascaraBinario = pOcteto + "." + sOcteto + "." + tOcteto + "." + qOcteto;
@@ -263,56 +261,6 @@ namespace CalcSubnet.Classes
             return qtd1s;
         }
 
-        private void DeterminarQtdDeHostsESubredes(string octeto1, string octeto2, string octeto3, string octeto4)
-        {
-            DeterminarQtdHosts(octeto1, octeto2, octeto3, octeto4);
-            DeterminarQtdSubredes(octeto1, octeto2, octeto3, octeto4);
-        }
-
-        private int DeterminarQtdHosts(string[] endereco)
-        {
-            int qtd0s = 0;
-            string enderecoSemPonto = string.Empty;
-
-            for (int i = 0; i < endereco.Length; i++)
-            {
-                enderecoSemPonto = string.Join("", endereco);
-            }
-
-            for (int j = 0; j < enderecoSemPonto.Length; j++)
-            {
-                char carac0 = '0';
-
-                if (enderecoSemPonto[j] == carac0)
-                {
-                    qtd0s++;
-                }
-            }
-
-            return qtd0s;
-        }
-
-        private void DeterminarQtdHosts(string octeto1, string octeto2, string octeto3, string octeto4)
-        {
-            string tamanhoSubrede = octeto1 + octeto2 + octeto3 + octeto4;
-            int qtd0s = 0;
-
-            for (int i = 0; i < tamanhoSubrede.Length; i++)
-            {
-                char carac0 = '0';
-
-                if (tamanhoSubrede[i] == carac0)
-                {
-                    qtd0s++;
-                }
-            }
-
-            // 2 representa 1 endereço de rede e 1 endereço de broadcast.
-            int qtdDeHosts = (int)Math.Pow(2, qtd0s) - 2;
-
-            formPrincipal.TxtQtdDeHosts = qtdDeHosts.ToString();
-        }
-
         private void DeterminarQtdSubredes(string[] endereco)
         {
             string octetoMisto = string.Empty;
@@ -352,20 +300,6 @@ namespace CalcSubnet.Classes
             formPrincipal.TxtQtdHostsPossiveisPorSubrede = qtdHostsPossiveis.ToString();
             //
             formPrincipal.TxtEnderecoDeRede = formPrincipal.TxtEnderecoIPDecimal.ToString();
-        }
-
-        private void DeterminarQtdSubredes(string octeto1, string octeto2, string octeto3, string octeto4)
-        {
-            int qtd1s = DeterminarCIDR(octeto1, octeto2, octeto3, octeto4);
-
-            int sub = (32 - qtd1s) % 8;
-
-            int qtdDeSubredes = (int)Math.Pow(2, sub);
-            int qtdHostsPossiveis = (int)Math.Pow(2, qtd1s);
-
-            formPrincipal.TxtCIDRMascaraDecimal = qtd1s.ToString();
-            formPrincipal.TxtQtdDeSubredes = qtdDeSubredes.ToString();
-            formPrincipal.TxtQtdHostsPossiveisPorSubrede = qtdHostsPossiveis.ToString("N2");
         }
 
         internal void ResetarCamposMascara()
