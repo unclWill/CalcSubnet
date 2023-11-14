@@ -168,21 +168,6 @@
             panel4.Size = new Size(500, 227);
             panel4.TabIndex = 6;
             // 
-            // TxtVersao
-            // 
-            TxtVersao.BackColor = SystemColors.ButtonHighlight;
-            TxtVersao.BorderStyle = BorderStyle.None;
-            TxtVersao.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            TxtVersao.Location = new Point(131, 101);
-            TxtVersao.MaxLength = 20;
-            TxtVersao.Name = "TxtVersao";
-            TxtVersao.ReadOnly = true;
-            TxtVersao.Size = new Size(248, 18);
-            TxtVersao.TabIndex = 7;
-            TxtVersao.TabStop = false;
-            TxtVersao.TextAlign = HorizontalAlignment.Center;
-            TxtVersao.WordWrap = false;
-            // 
             // label6
             // 
             label6.AutoSize = true;

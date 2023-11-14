@@ -20,6 +20,13 @@ namespace CalcSubnet
         public static string ExibirVersao()
         {
             string versao = Assembly.GetEntryAssembly()!.GetName().Version!.ToString();
+            string nomeVersao = $"CalcSubnet v{versao} (beta)";
+            return nomeVersao;
+        }
+
+        public static string ExibirVersao()
+        {
+            string versao = Assembly.GetEntryAssembly()!.GetName().Version!.ToString();
             string nomeVersao = $"CalcSubnet v{versao}-141123 (beta)";
             return nomeVersao;
         }
