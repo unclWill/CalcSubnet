@@ -13,6 +13,13 @@
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageIcon></PackageIcon>
     <Copyright>© 2023 William Silva</Copyright>
+    <Title>CalcSubnet</Title>
+    <PackageProjectUrl>https://github.com/unclWill/CalcSubnet</PackageProjectUrl>
+    <Description>Programa para conversão e cálculo de IPs e másacaras de sub-rede.</Description>
+    <AssemblyVersion>0.0.1.1</AssemblyVersion>
+    <FileVersion>0.0.1.1</FileVersion>
+    <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+    <PackageLicenseExpression>https://www.gnu.org/licenses/old-licenses/lgpl-2.1-standalone.html</PackageLicenseExpression>
   </PropertyGroup>
 
   <ItemGroup>

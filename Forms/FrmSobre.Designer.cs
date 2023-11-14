@@ -30,7 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmSobre));
             panel1 = new Panel();
-            label5 = new Label();
             label4 = new Label();
             label2 = new Label();
             label1 = new Label();
@@ -41,6 +40,7 @@
             panel3 = new Panel();
             PbIcone = new PictureBox();
             panel4 = new Panel();
+            TxtVersao = new TextBox();
             label6 = new Label();
             panel2.SuspendLayout();
             panel3.SuspendLayout();
@@ -57,17 +57,6 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(131, 227);
             panel1.TabIndex = 0;
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.BackColor = Color.Transparent;
-            label5.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            label5.Location = new Point(209, 107);
-            label5.Name = "label5";
-            label5.Size = new Size(83, 20);
-            label5.TabIndex = 5;
-            label5.Text = "0.1.0 (beta)";
             // 
             // label4
             // 
@@ -168,16 +157,29 @@
             // panel4
             // 
             panel4.BackColor = SystemColors.ButtonHighlight;
+            panel4.Controls.Add(TxtVersao);
             panel4.Controls.Add(label6);
             panel4.Controls.Add(BtnIrAoGitHub);
             panel4.Controls.Add(label1);
             panel4.Controls.Add(label2);
-            panel4.Controls.Add(label5);
             panel4.Controls.Add(label4);
             panel4.Location = new Point(12, 75);
             panel4.Name = "panel4";
             panel4.Size = new Size(500, 227);
             panel4.TabIndex = 6;
+            // 
+            // TxtVersao
+            // 
+            TxtVersao.BackColor = SystemColors.ButtonHighlight;
+            TxtVersao.BorderStyle = BorderStyle.None;
+            TxtVersao.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            TxtVersao.Location = new Point(167, 103);
+            TxtVersao.MaxLength = 20;
+            TxtVersao.Name = "TxtVersao";
+            TxtVersao.ReadOnly = true;
+            TxtVersao.Size = new Size(169, 18);
+            TxtVersao.TabIndex = 7;
+            TxtVersao.TabStop = false;
             // 
             // label6
             // 
@@ -228,8 +230,8 @@
         private Panel panel3;
         private PictureBox PbIcone;
         private Label label4;
-        private Label label5;
         private Panel panel4;
         private Label label6;
+        private TextBox TxtVersao;
     }
 }

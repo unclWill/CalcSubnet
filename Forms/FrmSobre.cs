@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
+﻿using System.ComponentModel;
 using System.Diagnostics;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using System.Reflection;
 
 namespace CalcSubnet.Forms
 {
@@ -15,6 +9,7 @@ namespace CalcSubnet.Forms
         public FrmSobre()
         {
             InitializeComponent();
+            TxtVersao.Text = Program.ExibirVersao();
         }
 
         private void BtnFechar_Click(object sender, EventArgs e)
