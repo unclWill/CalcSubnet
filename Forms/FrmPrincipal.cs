@@ -1,5 +1,7 @@
+using System;
 using System.Diagnostics;
 using System.Drawing.Configuration;
+using System.Reflection;
 using System.Text;
 using System.Windows.Forms;
 using CalcSubnet.Classes;
@@ -122,6 +124,7 @@ namespace CalcSubnet
         public FrmPrincipal()
         {
             InitializeComponent();
+            Text = Program.ExibirVersao();
         }
 
         private void FrmPrincipal_Load(object sender, EventArgs e)
@@ -194,11 +197,12 @@ namespace CalcSubnet
         {
             Mascara mascara = new Mascara();
 
-            if (TxtCIDREndIP.TextLength == 0)
+            if (TxtCIDREndIP.TextLength <= 0)
             {
+                RtxtMensagens.Text = "O campo do CIDR não pode ficar vazio!";
                 TxtCIDREndIP.Text = "0";
             }
-            
+
             RbConvMascBinDec.Checked = true;
             TxtCIDRMasc.Text = TxtCIDREndIP.Text;
             int qtd1s = int.Parse(TxtCIDREndIP.Text);

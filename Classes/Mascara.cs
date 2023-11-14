@@ -265,6 +265,7 @@ namespace CalcSubnet.Classes
         {
             string octetoMisto = string.Empty;
 
+            // Verifica cada octeto até encontrar um que contenha os bits 1 e 0 (no mesmo octeto) e utiliza esse octeto mesclado para a operção.
             for (int i = 0; i < endereco.Length; i++)
             {
                 if (endereco[i].Contains('0'))
@@ -274,8 +275,30 @@ namespace CalcSubnet.Classes
                 }
             }
 
-            int qtdDigitos1 = 0;
-            int qtdDigitos0 = 0;
+            // Conta a quantidade de dígitos 0 no restante da máscara.
+            byte qtdBitsDeHost = 0;
+            byte qtdBitsDeRede = 0;
+
+            for (int k = 0; k < endereco.Length; k++)
+            {
+                string octeto = endereco[k];
+
+                for (int l = 0; l < octeto.Length; l++)
+                {
+                    if (octeto[l] == '0')
+                    {
+                        qtdBitsDeHost++;
+                    }
+                    else 
+                    {
+                        qtdBitsDeRede++;
+                    }
+
+                }
+            }
+
+            byte qtdDigitos1 = 0;
+            byte qtdDigitos0 = 0;
 
             for (int j = 0; j < octetoMisto.Length; j++)
             {
@@ -289,15 +312,32 @@ namespace CalcSubnet.Classes
                 }
             }
 
-            int qtdDeSubredes = ((int)Math.Pow(2, qtdDigitos1));
-            //
-            int qtdHostsPorSubRede = (int)Math.Pow(2, qtdDigitos0) - 2;
-            //
-            int qtdHostsPossiveis = (int)Math.Pow(2, qtdDigitos1) * 255;
+            byte cidr = byte.Parse(formPrincipal.TxtCIDRMascaraDecimal);
+            long qtdDeSubredes = 0;
 
-            formPrincipal.TxtQtdDeSubredes = qtdDeSubredes.ToString();
-            formPrincipal.TxtQtdDeHosts = qtdHostsPorSubRede.ToString();
-            formPrincipal.TxtQtdHostsPossiveisPorSubrede = qtdHostsPossiveis.ToString();
+            if (cidr >= 1 && cidr <= 16)
+            {
+                qtdDeSubredes = (long)Math.Pow(2, qtdDigitos1);
+            }
+            else if (cidr >= 1 && cidr <= 23)
+            {
+               qtdDeSubredes = (long)Math.Pow(2, qtdDigitos1 + 8);
+            }
+            else if (cidr >= 24)
+            {
+                qtdDeSubredes = (long)Math.Pow(2, qtdDigitos1 + 16);
+            }
+
+            //long qtdDeSubredes = (long)Math.Pow(2, qtdDigitos1);
+            //
+            long qtdHostsPorSubRede = (long)Math.Pow(2, qtdBitsDeHost) - 2;
+            //
+
+            long qtdHostsPossiveis = (long)Math.Pow(2, qtdBitsDeHost);
+
+            formPrincipal.TxtQtdDeSubredes = qtdDeSubredes.ToString("N1");
+            formPrincipal.TxtQtdDeHosts = qtdHostsPorSubRede.ToString("N1");
+            formPrincipal.TxtQtdHostsPossiveisPorSubrede = qtdHostsPossiveis.ToString("N1");
             //
             formPrincipal.TxtEnderecoDeRede = formPrincipal.TxtEnderecoIPDecimal.ToString();
         }

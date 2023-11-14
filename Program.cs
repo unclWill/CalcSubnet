@@ -1,3 +1,5 @@
+using System.Reflection;
+
 namespace CalcSubnet
 {
     internal static class Program
@@ -13,6 +15,13 @@ namespace CalcSubnet
 
             ApplicationConfiguration.Initialize();
             Application.Run(new FrmPrincipal());
+        }
+
+        public static string ExibirVersao()
+        {
+            string versao = Assembly.GetEntryAssembly()!.GetName().Version!.ToString();
+            string nomeVersao = $"CalcSubnet v{versao}-141123 (beta)";
+            return nomeVersao;
         }
     }
 }

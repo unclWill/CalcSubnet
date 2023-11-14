@@ -492,7 +492,7 @@
             // 
             // GpbMensagens
             // 
-            GpbMensagens.BackColor = SystemColors.Info;
+            GpbMensagens.BackColor = SystemColors.HighlightText;
             GpbMensagens.Controls.Add(RtxtMensagens);
             GpbMensagens.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             GpbMensagens.Location = new Point(401, 116);
@@ -504,7 +504,7 @@
             // 
             // RtxtMensagens
             // 
-            RtxtMensagens.BackColor = SystemColors.Info;
+            RtxtMensagens.BackColor = SystemColors.HighlightText;
             RtxtMensagens.BorderStyle = BorderStyle.None;
             RtxtMensagens.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             RtxtMensagens.ForeColor = SystemColors.WindowFrame;
@@ -814,7 +814,7 @@
             // 
             MnuSobreEsteSoftware.Image = (Image)resources.GetObject("MnuSobreEsteSoftware.Image");
             MnuSobreEsteSoftware.Name = "MnuSobreEsteSoftware";
-            MnuSobreEsteSoftware.Size = new Size(176, 22);
+            MnuSobreEsteSoftware.Size = new Size(180, 22);
             MnuSobreEsteSoftware.Text = "&Sobre este software";
             MnuSobreEsteSoftware.Click += MnuSobreEsteSoftware_Click;
             // 
@@ -846,7 +846,7 @@
             MaximizeBox = false;
             Name = "FrmPrincipal";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "CalcSubnet v0.1.0 (beta)";
+            Text = "CalcSubnet v0.1.1 (beta)";
             Load += FrmPrincipal_Load;
             groupBox1.ResumeLayout(false);
             groupBox6.ResumeLayout(false);
