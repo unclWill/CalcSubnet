@@ -19,4 +19,4 @@
 
 1. [ ] Ajustar o processo de conversões de base numérica, tornando a conversão da máscara independente da conversão do IPv4 e vice-versa;
 2. [x] Corrigir o funcionamento da definição da máscara de sub-rede, levando em consideração apenas a notação CIDR (classless);
-3. [ ] Corrigir a definição da quantidade de sub-redes, da quantidades de hosts e da quantidade de endereços possíveis (por host).
+3. [x] Corrigir a definição da quantidade de sub-redes, da quantidades de hosts e da quantidade de endereços possíveis (por host).
